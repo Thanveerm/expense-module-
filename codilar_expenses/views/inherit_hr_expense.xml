@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="inherit_hr_expense_form_view">
+            <field name="name">inherit.hr.expense.form</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="expense_type"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+    <data>
+        <record model="ir.ui.view" id="inherit_hr_expense_tree_view">
+            <field name="name">inherit.hr.expense.tree</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_my_expenses_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="expense_type"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+    <data>
+        <record model="ir.ui.view" id="inherit_hr_expense_search_view">
+            <field name="name">inherit.hr.expense.search</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="expense_type"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+    <!--    <data>-->
+    <!--        <record model="ir.ui.view" id="inherit_hr_expense_due_date">-->
+    <!--            <field name="name">inherit.hr.expense.due.date</field>-->
+    <!--            <field name="model">hr.expense</field>-->
+    <!--            <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>-->
+    <!--            <field name="arch" type="xml">-->
+    <!--                <xpath expr="//field[@name='date']" position="after">-->
+    <!--                    <field name="due_date"/>-->
+    <!--                </xpath>-->
+    <!--            </field>-->
+    <!--        </record>-->
+    <!--    </data>-->
+
+    <data>
+        <record model="ir.ui.view" id="inherit_hr_expense_due_date_tree">
+            <field name="name">inherit.hr.expense.due.date.tree</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_my_expenses_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='expense_type']" position="after">
+                    <field name="due_date"/>
+                </xpath>
+                <xpath expr="//field[@name='total_amount_company']" position="after">
+                    <field name="forcast" sum="total forcast"/>
+                </xpath>
+                <xpath expr="//field[@name='forcast']" position="after">
+                    <field name="paid" sum="total paid"/>
+                </xpath>
+                <xpath expr="//field[@name='paid']" position="after">
+                    <field name="unpaid" sum="total unpaid"/>
+                </xpath>
+                <xpath expr="//field[@name='unpaid']" position="after">
+                    <field name="boolean" widget="boolean_toggle" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+    <data>
+        <record model="ir.ui.view" id="inherit_hr_expense_line_ids">
+            <field name="name">inherit.hr.expense.line.ids</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='total_amount_company']"
+                       position="after">
+                    <field name="forcast"/>
+                </xpath>
+                <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='forcast']"
+                       position="after">
+                    <field name="paid"/>
+                </xpath>
+                <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='paid']"
+                       position="after">
+                    <field name="unpaid"/>
+                </xpath>
+                <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='date']"
+                       position="after">
+                    <field name="due_date"/>
+                </xpath>
+                <xpath expr="//field[@name='expense_line_ids']/tree/field[@name='date']"
+                       position="before">
+                    <field name="boolean" widget="boolean_toggle"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

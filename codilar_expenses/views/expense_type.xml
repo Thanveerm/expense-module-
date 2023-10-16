@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="expense_type_tree_view">
+            <field name="name">expense.type.tree</field>
+            <field name="model">expense.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Expense Type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="expense_type_form_view">
+            <field name="name">expense.type.form</field>
+            <field name="model">expense.type</field>
+            <field name="arch" type="xml">
+                <form string="Expense Type Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" string="Expense Type"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+
+    <record id="action_model_one_tree_view_only" model="ir.actions.act_window">
+        <field name="name">Model One Tree</field>
+        <field name="res_model">expense.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Ensure that the parent menu 'sale.sale_menu_root' exists -->
+    <menuitem id="menu_model_one_2"
+              name="Expense types"
+              action="action_model_one_tree_view_only"
+              parent="hr_expense.menu_hr_expense_configuration"/>
+</odoo>
